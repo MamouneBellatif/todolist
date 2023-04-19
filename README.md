@@ -1,6 +1,6 @@
 # Mamoune Bellatif
 Projet TODO 
-# Application -> [https://todo.mamounebellatif.xyz](https://todo.mamounebellatif.xyz)
+# Application -> [https://todo.mamounebellatif.xyz](https://todo.mamounebellatif.com)
 
 # Fonctionnalités implémentés:
 - Toutes les fonctionnalités demandés de base 
