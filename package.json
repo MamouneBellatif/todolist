@@ -1,6 +1,6 @@
 {
-  "name": "l3m-tp-x-todolist-angular-y2022",
-  "version": "0.0.0",
+  "name": "todo-list",
+  "version": "2.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

@@ -2,10 +2,10 @@
     <input #newTextInput name="newTextInput" class="editTitle" placeholder="nouveau titre de liste" autofocus #title />
 </form>
 <section class="todoapp">
-  
+
     <header class="header">
         <!-- changer le nom de la liste -->
-       
+
 
         <!-- affivhage nom de liste -->
         <h1 *ngIf="obsToDo | async as TD">{{TD.label}}</h1>
@@ -22,7 +22,7 @@
     </header>
 
     <!-- <section class="todoapp"> -->
-        
+
     <!-- </section> -->
 
     <section class="main">
@@ -33,21 +33,21 @@
         </ng-template>
 
         <label *ngIf="obsToDo | async as TD " (click)="checkAll(TD.items)" for="toggleAll" >Mark all as complete</label>
-       
+
         <!-- Liste principale -->
         <ul class="todo-list" *ngIf="obsToDo | async as TD">
             <!-- item -->
             <li *ngFor="let item of TD.items, let i = index; trackBy: trackByFn" [class.completed]="item.isDone"
                 (dblclick)="changeEdit(item.isEditing, item)" (focusout)="changeEdit(true, item) "
                 [class.editing]="item.isEditing">
-               
+
                 <app-todo-item *ngIf="(!item.isDone && showActive) || (item.isDone && showDone) || (showAll) "
                     [data]="item" (update)="update($event, item)" (remove)="delete($event)"></app-todo-item>
-            
+
                 </li>
         </ul>
     </section>
-  
+
     <!-- si pas d'item, on affiche pas le footer -->
     <footer *ngIf="(obsToDo |async)?.items?.length!=0"  class="footer">
         <!-- <span class="todo-count"><strong></strong> {{remaining}} restantes</span> -->
@@ -55,12 +55,12 @@
         <span *ngIf="countRemaining | async as nrest; else zero" class="todo-count"><strong> {{nrest}} restantes</strong></span>
        <!-- else pas d'item -->
         <ng-template #zero>
-            <span class="todo-count">Il ne reste plus de tache.</span>   
+            <span class="todo-count">Il ne reste plus de tache.</span>
         </ng-template>
-           
+
         <!-- filtres -->
         <ul class="filters">
-       
+
             <li>
                 <a (click)="filterAll()" class="filterAll" [class.selected]="showAll">Tous</a>
             </li>
@@ -69,10 +69,10 @@
             </li>
             <li>
                 <a (click)="filterDone()" class="filterCompleted" [class.selected]="showDone">Complétés</a>
-          
+
             </li>
         </ul>
-       
+
         <button (click)="deleteDone()" class="clear-completed">Supprimer cochées</button>
 
     </footer>
@@ -81,7 +81,7 @@
     <!-- <qr-code *ngIf="!isShared" [value]="'mamounebellatif.xyz/list/'+idList"></qr-code> -->
 
 
-</section>   
+</section>
 
 <!-- <mat-card *ngIf="!isShared" class="grid-container">
     <mat-card-content  id="qr">
@@ -95,21 +95,21 @@
 </mat-card> -->
 <mat-card *ngIf="!isShared">
 <div class="grid-container">
-    <qr-code  id="qr" [value]="'mamounebellatif.xyz/list/'+idList"></qr-code>
+    <qr-code  id="qr" [value]="'todo.mamounebellatif.com/list/'+idList"></qr-code>
     <span  id="qrInfo" >Ce Qr code vous permet de partager cette liste et d'y acceder sans vous connecter
             vous pourrez ainsi travailler avec d'autres personnes en même temps
     </span>
 </div>
-</mat-card> 
+</mat-card>
 
 <br>
 <!-- liste des listes: matrix reloaded -->
 <section class="matrix" *ngIf="!isShared">
-    
+
     <mat-list role="list"   *ngIf="obsList | async as L">
         <h2 id="listTitle">Vos listes ({{listNb}})</h2>
         <mat-divider></mat-divider>
-        <mat-list-item role="listitem"  *ngFor="let item of L; let i = index" > 
+        <mat-list-item role="listitem"  *ngFor="let item of L; let i = index" >
             <a  [class.selected]="item.id==currentId" class="other-lists" (click)="changeList(item.id, i)">{{item.label}}</a>
             <!-- <a  [class.selected]="i==selected" class="other-lists" (click)="changeList(item.id, i)">{{item.id.replace(userId,'')}}, {{item.label}}</a> -->
             <a *ngIf="i!=0" (click)="deleteList(item)" class="delete"> supprimer liste</a>
@@ -123,4 +123,4 @@
 </section>
 
 
-  
+
